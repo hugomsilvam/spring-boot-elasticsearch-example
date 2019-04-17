@@ -15,6 +15,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder
 import org.springframework.stereotype.Component
 import youclap.service.search.controllers.SearchUserController
+import youclap.service.search.models.PrivacyType
 import youclap.service.search.models.User
 import youclap.service.search.repositories.UserRepository
 import kotlin.random.Random
@@ -76,7 +77,7 @@ class UserService {
                         .fuzziness(Fuzziness.AUTO)
                 )
                 .withFilter(QueryBuilders.boolQuery()
-                        .mustNot(QueryBuilders.termQuery("deleted", true))
+                        .mustNot(QueryBuilders.matchQuery("deleted", true))
                 ).build()
 
         return userRepository.search(searchQuery)

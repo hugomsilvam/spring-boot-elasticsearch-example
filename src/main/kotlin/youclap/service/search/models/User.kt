@@ -1,12 +1,9 @@
 package youclap.service.search.models
 
-import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.elasticsearch.common.Nullable
 import org.springframework.data.annotation.Id
 import org.springframework.data.elasticsearch.annotations.Document
-import java.util.*
 
 @Document(indexName = "user", type = "user")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

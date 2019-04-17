@@ -22,18 +22,18 @@ class ElasticSearchConfig {
 
     var clusterName: String = "docker-cluster"
 
-    fun createElasticTransportClient () : Client {
+    fun createElasticTransportClient(): Client {
         var elasticsearchSettings = Settings.builder()
                 .put("client.transport.sniff", true)
                 .put("path.home", elasticsearchHome)
                 .put("cluster.name", clusterName).build()
-        var client : TransportClient = PreBuiltTransportClient(elasticsearchSettings)
+        var client: TransportClient = PreBuiltTransportClient(elasticsearchSettings)
         client.addTransportAddress(TransportAddress(InetAddress.getByName("127.0.0.1"), 9300))
         return client
     }
 
     @Bean
-    fun elasticsearchTemplate() : ElasticsearchOperations {
+    fun elasticsearchTemplate(): ElasticsearchOperations {
         return ElasticsearchTemplate(createElasticTransportClient())
     }
 }
